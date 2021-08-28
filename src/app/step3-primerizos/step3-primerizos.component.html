@@ -1,0 +1,240 @@
+    <div style="background: #f9f9f9;" class="container">
+        <div >
+            <div>
+                <div class="formulario">
+                    <div>
+                        <div class="block-ce" Style="text-align:center;">
+                            <div class="col-md">
+                        
+                                <div>
+
+  
+                                    <div>
+                                        <h3 class="BLUE" Style="padding-top:20px;">Propuesta Sugerida</h3>
+                                        <br/>
+                                        <div class="float-center">
+                                            <div Class="col-md-12" Style="float:left">
+                                                <div class="" style=" text-align: center; align-items: center;">
+                                                    <table Class="customers">
+                                                        <tr id="1Row">
+                                                            <th style="text-align: center; ">
+                                                                Concepto
+                                                            </th>
+                                                            <th style="text-align: center; ">
+                                                                Montos
+                                                            </th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Valor sugerido:</td>
+                                                            <td style="text-align: center; " id="newdate">
+                                                                <b>
+                                                                    <span id="valor">
+                                                                        {{monto|currency:'₡'}}
+                                                                    </span>
+                                                                </b>
+                                                            </td>
+                                                        </tr>
+                                                        <tr id="2Row">
+                                                            <td style="text-align: center; ">Interés:</td>
+                                                            <td style="text-align: center; " id="newdate2">
+                                                                <b>
+                                                                    <span id="interes">
+                                                                        {{interes|currency:'₡'}}
+                                                                    </span>
+                                                                </b>
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr id="8Row">
+                                                            <td style="text-align: center; ">
+                                                                Cupo Administrativo:
+                                                            </td>
+                                                            <td style="text-align: center; " id="newdate6">
+                                                                <b>
+                                                                    <span id="iva">
+                                                                        {{aval |currency:'₡'}}
+                                                                    </span>
+                                                                </b>
+                                                            </td>
+                                                        </tr>
+
+
+
+                                                        <tr id="4Row">
+                                                            <td style="text-align: center; ">
+                                                                Monto Bruto Tecnología:
+                                                            </td>
+                                                            <td style="text-align: center; " id="newdate6">
+                                                                <b>
+                                                                    <span id="tecno">
+                                                                        {{tecno|currency:'₡'}}
+                                                                    </span>
+                                                                </b>
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr id="6Row">
+                                                            <td style="text-align: center; ">
+                                                                Descuento Tecnología:
+                                                            </td>
+                                                            <td style="text-align: center; " id="newdate5">
+                                                                <b>
+                                                                    <span id="subTotal">
+                                                                        {{descuento|currency:'₡'}}
+                                                                    </span>
+                                                                </b>
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr id="4Row">
+                                                            <td style="text-align: center; ">
+                                                                Monto Neto Tecnología:
+                                                            </td>
+                                                            <td style="text-align: center; " id="newdate6">
+                                                                <b>
+                                                                    <span id="tecno">
+                                                                        {{servicioFE|currency:'₡'}}
+                                                                    </span>
+                                                                </b>
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                        <tr id="8Row">
+                                                            <td style="text-align: center; ">
+                                                                I.V.A:
+                                                            </td>
+                                                            <td style="text-align: center; " id="newdate6">
+                                                                <b>
+                                                                    <span id="iva">
+                                                                        {{iva |currency:'₡'}}
+                                                                    </span>
+                                                                </b>
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                        
+                                                        <tr id="7Row">
+                                                            <td style="text-align: center; ">
+                                                                TOTAL A PAGAR:
+                                                            </td>
+                                                            <td style="text-align: center; " id="newdate8">
+                                                                <b>
+                                                                    <span id="total">
+                                                                        {{total|currency:'₡'}}
+                                                                    </span>
+                                                                </b>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                   
+                                        <br />
+                                        <div class="container"  Style="float:center">
+                                            <div class="" style=" text-align: center; align-items: center;">
+                                                <h2 Class="BLUE" style=" font-size: 14px;line-height: 22px; font-weight: 700; margin-top: 30px; text-align: center; align-items: center;">ABONOS.</h2>
+                                                <table Class="customers">
+                                                    <tr id="1Row">
+                                                        <th style="text-align: center; ">
+                                                            Abono
+                                                        </th>
+                                                        <th style="text-align: center; ">
+                                                            Fecha de Pago
+                                                        </th>
+                                                        <th style="text-align: center; ">
+                                                            Monto 
+                                                        </th>
+                                                    </tr>
+                                                    
+                                                   
+                                                        <tr id="fecha1">
+                                                            
+                                                            <td style="text-align: center; " id="newdate">
+                                                                Abono unico
+                                                            </td>
+                                                            <td style="text-align: center; color:black;" id="pagos">
+                                                                <span>
+                                                                    {{fecha1}}
+                                                                </span>
+                                                                
+
+                                                            </td>
+                                                            <td style="text-align: center; color:black;" id="pagos">
+                                                                <span>
+                                                                    {{Abono1|currency:'₡'}}
+                                                                </span>
+                                                                
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr id="fecha2">
+                                                            
+                                                            <td style="text-align: center; " id="newdate">
+                                                                <span>
+                                                                    {{Abono2Texto}}
+                                                                </span>
+                                                               
+                                                            </td>
+                                                            <td style="text-align: center; color:black;" id="pagos">
+                                                                <span>
+                                                                    {{fecha2}}
+                                                                </span>
+                                                                
+
+                                                            </td>
+                                                            <td style="text-align: center; color:black;" id="pagos">
+                                                                <span>
+                                                                    {{Abono2|currency:'₡'}}
+                                                                </span>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr id="fecha3">
+                                                            
+                                                            <td style="text-align: center; " id="newdate">
+                                                                Abono final
+                                                            </td>
+                                                            <td style="text-align: center; color:black;" id="pagos">
+                                                                <span>
+                                                                    {{fecha3}}
+                                                                </span>
+                                                                
+
+                                                            </td>
+                                                            <td style="text-align: center; color:black;" id="pagos">
+                                                                <span>
+                                                                    {{Abono3|currency:'₡'}}
+                                                                </span>
+
+                                                            </td>
+                                                        </tr>
+                                                   
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                        <div Style="margin-top:20px;margin-bottom:20px;">
+                                            <a [routerLink]="['']" class="btn btn btn-danger" style="color: #f9f9f9;" >Cancelar</a>
+                                            &nbsp;
+                                            <button (click)="aceptar()" class="btn btn-success">Aceptar</button>   
+                                        </div>
+                                         
+                                    </div>  
+                                </div> 
+                            </div>   
+                        </div>
+                    </div>  
+                </div> 
+            </div>
+        </div>
+        </div>
+
+        <ngx-spinner bdColor="rgba(51,51,51,0.8)"
+        size="medium"
+        color="#fff">
+            <img src='https://res.cloudinary.com/dhp4vmxxf/image/upload/v1612140669/35771931234507.564a1d2403b3a_pt3lfo.gif'/>
+        </ngx-spinner>

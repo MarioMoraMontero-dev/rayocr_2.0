@@ -1,0 +1,513 @@
+<div class="container" Style="text-align:center;">
+  <!-- Info Amigo -->
+  <div class="container">
+    <div class="row d-flex">
+      <h5 Style="text-align:center;width:100%;" Class="BLUE">
+        Perfil de Clientes
+      </h5>
+      <p Style="width: 100%; color: #025FA3;text-align:center;">
+        RAYO reconoce y valora tu récord crediticio. Hemos diseñado un programa
+        de membresía que premia tu historial de pagos.
+      </p>
+      <div
+        class="col-md-3 col-xs-12 d-flex ftco-animate fadeInUp ftco-animated"
+      >
+        <div class="blog-entry align-self-stretch">
+          <img
+            class="super"
+            src="https://storage.googleapis.com/www.rayo.cr/imagenesRayo/amigos_1.png"
+          />
+        </div>
+      </div>
+      <div
+        class="col-md-3 col-xs-12 d-flex ftco-animate fadeInUp ftco-animated"
+      >
+        <div class="blog-entry align-self-stretch">
+          <img
+            class="super"
+            src="https://storage.googleapis.com/www.rayo.cr/imagenesRayo/amigos_2.png"
+          />
+        </div>
+      </div>
+      <div
+        class="col-md-3 col-xs-12 d-flex ftco-animate fadeInUp ftco-animated"
+      >
+        <div class="blog-entry align-self-stretch">
+          <img
+            class="super"
+            src="https://storage.googleapis.com/www.rayo.cr/imagenesRayo/amigos_3.png"
+          />
+        </div>
+      </div>
+      <div
+        class="col-md-3 col-xs-12 d-flex ftco-animate fadeInUp ftco-animated"
+      >
+        <div class="blog-entry align-self-stretch">
+          <img
+            class="super"
+            src="https://storage.googleapis.com/www.rayo.cr/imagenesRayo/amigos_4.png"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Fin Info Amigo -->
+
+  <div class="row" *ngFor="let l of data" class="container">
+    <div class="row d-flex">
+      <h5 Style="text-align:center;width:100%;" Class="BLUE">
+        Información del cliente
+      </h5>
+      <div
+        class="col-md-6 col-xs-12 d-flex ftco-animate fadeInUp ftco-animated"
+      >
+        <div
+          class="blog-entry align-self-stretch"
+          style="text-align: center !important; width: 100%"
+        >
+          <p>Nombre: {{ l.nombre }}</p>
+          <p>
+            Dirección: {{ l.pais }},{{ l.provincia }},{{ l.caton }},{{
+              l.distrito
+            }}
+          </p>
+          <p>Dirección exacta: {{ l.direccionExacta }}</p>
+          <p>Teléfono: {{ l.phone }}</p>
+          <p>Otro Teléfono: {{ l.mobilePhone }}</p>
+          <p>Lugar de Trabajo: {{ l.lugarDeTrabajo }}</p>
+        </div>
+      </div>
+      <div
+        class="col-md-6 col-xs-12 d-flex ftco-animate fadeInUp ftco-animated"
+      >
+        <div
+          class="blog-entry align-self-stretch"
+          Style="text-align:center !important; width: 100%;"
+        >
+          <p>Cédula: {{ l.cedula }}</p>
+          <p>Celular: {{ l.mobilePhone }}</p>
+          <p>Correo: {{ l.email }}</p>
+          <p>Salario Mensual: {{ l.salarioReportado }}</p>
+          <p>
+            Número de Prestamos Mini y Plus Firmados:
+            {{ l.numPrestamosFirmados }}
+          </p>
+
+          <p style="display: none">Plazo: {{ l.plazo }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br />
+  <br />
+  <div></div>
+  <br />
+  <br />
+  <div class="container">
+    <div class="row">
+      <h5 class="blue-text text-darken-4" style="margin: 10px 0 10px 0">
+        * Estos montos son validos solo si cuenta esta al dia, si cuenta esta
+        atrasada, favor contactar a SERV al Cliente TEL 4103-3400
+      </h5>
+    </div>
+    <div class="row">
+      <h4 class="blue-text text-darken-4">Préstamos Actuales</h4>
+    </div>
+    <div class="container">
+      <table class="table" *ngFor="let l of data">
+        <thead>
+          <tr>
+            <th>Código de préstamo</th>
+            <th>Monto principal</th>
+            <th>Tecnología</th>
+            <!--<th>Cupo administracion</th>-->
+            <th>Interes</th>
+            <th>Descuento</th>
+            <th>Total a Pagar</th>
+            <th>Detalles</th>
+            <th colspan="2">Pagar</th>
+          </tr>
+        </thead>
+
+        <tbody *ngFor="let x of l.prestamos; let i = index">
+          <tr
+            data-toggle="collapse"
+            [attr.data-target]="'#demo' + i"
+            class="accordion-toggle"
+          >
+            <td style="text-align: center">
+              {{ x.codigoPrestamo }}
+            </td>
+
+            <td style="text-align: center">
+              {{ x.montoPrestamo }}
+            </td>
+            <td style="text-align: center">
+              {{ x.tecnologia }}
+            </td>
+            <!--<td style="text-align: center">
+                            {{ x.aval }}
+                          </td>-->
+            <td>
+              {{ x.interes }}
+            </td>
+            <td>
+              {{ x.descuento }}
+            </td>
+            <td>
+              {{ x.totalPagar }}
+            </td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-primary"
+                style="background-color: rgb(241, 179, 44) !important"
+              >
+                Detalles
+              </button>
+            </td>
+            <td colspan="2">
+              <a
+                href="https://www.recaudoenlinea.co.cr/VirtualPay?p=sWz+6tl7RGsQgQU1a74ruDxhitFxQUtwsK+g5kD+a44="
+                class="btn btn-info"
+                style="
+                  background-color: rgb(241, 179, 44) !important;
+                  border-color: rgb(241, 179, 44) !important;
+                "
+                >Pagar<img
+                  src="https://res.cloudinary.com/dhp4vmxxf/image/upload/v1615842365/icono-rayo_atdprh.png"
+                  width="20px"
+                  height="20px"
+              /></a>
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="12" class="hiddenRow">
+              <div class="accordian-body collapse" id="demo{{ i }}">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <!-- encabezado de tabla -->
+                      <td colspan="7">Detalles del prestamo</td>
+                    </tr>
+
+                    <tr class="info">
+                      <th>Fecha Depósito</th>
+                      <th>1era fecha a pagar</th>
+                      <th>2era fecha a pagar</th>
+                      <th>3era fecha a pagar</th>
+                      <th>Plazo</th>
+                      <th>Tipo de Descuento</th>
+                      <th>Detalles pagos</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr
+                      data-toggle="collapse"
+                      class="accordion-toggle"
+                      data-target="#demo10"
+                    >
+                      <td>{{ x.fechaDeposito }}</td>
+                      <td>{{ x.fecha1 }}</td>
+                      <td>{{ x.fecha2 }}</td>
+                      <td>{{ x.fecha3 }}</td>
+                      <td>{{ x.plazo }}</td>
+                      <td>{{ x.tipoDescuento }}</td>
+                      <td>
+                        <button type="button" class="btn btn-primary">
+                          Detalles Pagos
+                        </button>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="12" class="hiddenRow">
+                        <div class="accordian-body collapse" id="demo10">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <!-- encabezado de tabla -->
+                                <td colspan="5">Detalles de los pagos</td>
+                              </tr>
+                              <tr>
+                                <th>Estado</th>
+                                <th>Fecha de Pago</th>
+                                <th>Cuota</th>
+                                <th>Mora</th>
+                                <th>Monto a Pagar</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let p of x.pagos">
+                                <td>{{ p.estado }}</td>
+                                <td>{{ p.fechaPago }}</td>
+                                <td>{{ p.montoPagar }}</td>
+                                <td>{{ p.mora }}</td>
+                                <td>{{ p.totalMora }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!--Rayo plus-->
+
+      <div class="container">
+        <div class="container">
+          <div class="row">
+            <h5
+              class="blue-text text-darken-4"
+              style="margin: 10px 0 10px 0; font-size: 13px"
+            >
+              RAYO PLUS
+            </h5>
+          </div>
+          <div class="row">
+            <h4 class="blue-text text-darken-4">
+              Préstamos Actuales Rayo plus
+            </h4>
+          </div>
+          <div class="container">
+            <table class="table" *ngFor="let l of data2">
+              <thead>
+                <tr>
+                  <th>Código de préstamo</th>
+                  <th>Monto principal</th>
+                  <th>Tecnología</th>
+                  <th>Interes</th>
+                  <th>Descuento</th>
+                  <th>Total a Pagar</th>
+                  <th>Detalles</th>
+                  <th>Pagar</th>
+                </tr>
+              </thead>
+
+              <tbody *ngFor="let x of l.prestamos; let i = index">
+                <tr
+                  data-toggle="collapse"
+                  [attr.data-target]="'#demo' + i"
+                  class="accordion-toggle"
+                >
+                  <td style="text-align: center">
+                    {{ x.codigoPrestamo }}
+                  </td>
+
+                  <td style="text-align: center">
+                    {{ x.montoPrestamo }}
+                  </td>
+                  <td style="text-align: center">
+                    {{ x.tecnologia }}
+                  </td>
+                  <!--<td style="text-align: center">
+                                                          {{ x.aval }}
+                                                        </td>-->
+                  <td>
+                    {{ x.interes }}
+                  </td>
+                  <td>
+                    {{ x.descuento }}
+                  </td>
+                  <td>
+                    {{ x.totalPagar }}
+                  </td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      style="background-color: rgb(241, 179, 44) !important"
+                    >
+                      Detalles
+                    </button>
+                  </td>
+                  <td>
+                    <a
+                      href="https://www.recaudoenlinea.co.cr/VirtualPay?p=sWz+6tl7RGsQgQU1a74ruDxhitFxQUtwsK+g5kD+a44="
+                      class="btn btn-info"
+                      style="
+                        background-color: rgb(241, 179, 44) !important;
+                        border-color: rgb(241, 179, 44) !important;
+                      "
+                      >Pagar<img
+                        src="https://res.cloudinary.com/dhp4vmxxf/image/upload/v1615842365/icono-rayo_atdprh.png"
+                        width="20px"
+                        height="20px"
+                    /></a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td colspan="12" class="hiddenRow">
+                    <div class="accordian-body collapse" id="demo{{ i }}">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <!-- encabezado de tabla -->
+                            <td colspan="7">Detalles del prestamo</td>
+                          </tr>
+
+                          <tr class="info">
+                            <th>Fecha Depósito</th>
+                            <th>1era fecha a pagar</th>
+                            <th>2era fecha a pagar</th>
+                            <th>3era fecha a pagar</th>
+                            <th>Plazo</th>
+                            <th>Tipo de Descuento</th>
+                            <th>Detalles pagos</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr
+                            data-toggle="collapse"
+                            class="accordion-toggle"
+                            data-target="#demo10"
+                          >
+                            <td>{{ x.fechaDeposito }}</td>
+                            <td>{{ x.fecha1 }}</td>
+                            <td>{{ x.fecha2 }}</td>
+                            <td>{{ x.fecha3 }}</td>
+                            <td>{{ x.plazo }}</td>
+                            <td>{{ x.tipoDescuento }}</td>
+                            <td>
+                              <button type="button" class="btn btn-primary">
+                                Detalles Pagos
+                              </button>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="12" class="hiddenRow">
+                              <div class="accordian-body collapse" id="demo10">
+                                <table class="table">
+                                  <thead>
+                                    <tr>
+                                      <!-- encabezado de tabla -->
+                                      <td colspan="5">Detalles de los pagos</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Estado</th>
+                                      <th>Fecha de Pago</th>
+                                      <th>Cuota</th>
+                                      <th>Mora</th>
+                                      <th>Monto a Pagar</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor="let p of x.pagos">
+                                      <td>{{ p.estado }}</td>
+                                      <td>{{ p.fechaPago }}</td>
+                                      <td>{{ p.montoPagar }}</td>
+                                      <td>{{ p.mora }}</td>
+                                      <td>{{ p.totalMora }}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <br />
+
+        <p></p>
+        <div>
+          <p></p>
+        </div>
+        <div></div>
+      </div>
+      <div></div>
+
+      <!--Fin Rayo plus-->
+    </div>
+  </div>
+  <br />
+  <div class="alert alert-danger" [hidden]="ErrorAlCrearLaSolicitud">
+    <strong>Error!</strong>
+    Ocurrio un error al crear la solicitud.
+  </div>
+  <div class="alert alert-success" [hidden]="ProcesandoSolicitudSucces">
+    <strong>Espera!</strong>
+    Estamos procesando tu solicitud y generando la propuesta
+  </div>
+  <div [hidden]="DisponibleRayoPlus">
+    <p class="font-weight-bold" style="font-size: 20px">
+      ¡FELICITACIONES! Por tu lealtad, ahora tienes acceso a:
+    </p>
+    <img
+      src="https://storage.googleapis.com/demos.incompany.cr/RayoImagenes/RAYO-PLUS-Pop-Up-Blanca.jpg"
+      alt=""
+      class="img-thumbnail"
+      width="300px"
+      height="300px"
+    />
+  </div>
+  <p></p>
+  <br />
+  <div [hidden]="!DisponibleRayoPlus">
+    <button
+      class="btn btn-info"
+      (click)="getToken()"
+      style="margin-bottom: 10px !important"
+    >
+      Renovar Mini Préstamo
+    </button>
+  </div>
+
+  <br />
+
+  <table style="width: 100%" [hidden]="DisponibleRayoPlus">
+    <tr>
+      <td style="text-align: center !important">
+        <button
+          class="btn btn-purple"
+          (click)="goRayoplus()"
+          style="
+            margin-bottom: 10px !important;
+            color: white;
+            background-color: rgb(168, 17, 156);
+          "
+        >
+          Obtener Mayor Monto con <b style="color: orange">Rayo</b> Plus
+        </button>
+      </td>
+      <td style="text-align: left !important">
+        <button
+          class="btn btn-info"
+          (click)="getToken()"
+          style="margin-bottom: 10px !important"
+        >
+          Renovar Mini Préstamo
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>
+<div></div>
+
+<div>
+  <br />
+</div>
+
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff">
+  <img
+    src="https://res.cloudinary.com/dhp4vmxxf/image/upload/v1612140669/35771931234507.564a1d2403b3a_pt3lfo.gif"
+  />
+</ngx-spinner>

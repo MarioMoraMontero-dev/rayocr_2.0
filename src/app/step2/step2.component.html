@@ -1,0 +1,1571 @@
+<form [formGroup]="form" (ngSubmit)="solicitarPrimerizos($event)">
+  <div class="formulario">
+    <div class="block-ce">
+      <div class="col-md-12">
+        <div class="formu" Style="height: 100%;width:95%;">
+          <div class="">
+            <h3 class="BLUE" style="padding-top: 20px">
+              Formulario de solicitud de préstamo
+            </h3>
+            <div id="frm">
+              <!--Inicio Form-->
+
+              <div class="container">
+                <div class="col-lg-12">
+                  <div class="card bg-gradient-secondary shadow">
+                    <div class="card-body p-lg-5">
+                      <!--Nombre y cedula-->
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">*Nombre Completo:</p>
+                          <input
+                            class="form-control"
+                            id="Nombre"
+                            formControlName="nombreCompleto"
+                            style="height: 37px !important"
+                          />
+                          <div
+                            *ngIf="
+                              form.get('nombreCompleto')?.errors &&
+                              form.get('nombreCompleto')?.touched
+                            "
+                          >
+                          <!--Test-->
+                            <p
+                              *ngIf="
+                                form.get('nombreCompleto')?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                          </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">*Número de cédula:</p>
+                          <input
+                            class="form-control"
+                            id="Cedula"
+                            formControlName="numeroCedula"
+                            required="true"
+                            maxlength="12"
+                            minlength="9"
+                            style="height: 37px !important"
+                          />
+
+                          <div
+                            *ngIf="
+                              form.get('numeroCedula')?.errors &&
+                              form.get('numeroCedula')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form.get('numeroCedula')?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                            <p
+                              *ngIf="
+                                form.get('numeroCedula')?.hasError('pattern')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Solo se permiten valores numéricos
+                            </p>
+
+                            <p
+                              *ngIf="form.get('numeroCedula')?.hasError('min')"
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Número de cédula no valido
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!--Fin nombre cedula-->
+                      <!--Correo celular-->
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">*Correo Electrónico:</p>
+                          <input
+                            class="form-control"
+                            id="correoElectronico"
+                            formControlName="correoElectronico"
+                            style="height: 37px !important"
+                          />
+                          <div
+                            *ngIf="
+                              form.get('correoElectronico')?.errors &&
+                              form.get('correoElectronico')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form
+                                  .get('correoElectronico')
+                                  ?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                            <p
+                              *ngIf="
+                                form.get('correoElectronico')?.hasError('email')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Debe ingresar un correo electrónico valido
+                            </p>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">*Número celular:</p>
+                          <input
+                            class="form-control"
+                            id="celular"
+                            formControlName="numeroCelular"
+                            style="height: 37px !important"
+                          />
+                          <div
+                            *ngIf="
+                              form.get('numeroCelular')?.errors &&
+                              form.get('numeroCelular')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form.get('numeroCelular')?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                            <p
+                              *ngIf="
+                                form.get('numeroCelular')?.hasError('pattern')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Solo se permiten valores numéricos
+                            </p>
+
+                            <p
+                              *ngIf="form.get('numeroCelular')?.hasError('min')"
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Número de celular no valido
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <!--Fin Correo celular-->
+                      <!--Telefono Estado civil-->
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">Otro Teléfono:</p>
+                          <input
+                            class="form-control"
+                            id="otroTelefono"
+                            formControlName="otroTelefono"
+                            style="height: 37px !important"
+                          />
+                          <p
+                            *ngIf="
+                              form.get('otroTelefono')?.hasError('pattern')
+                            "
+                            style="
+                              color: red;
+                              font-weight: bold;
+                              text-transform: uppercase;
+                            "
+                          >
+                            Solo se permiten valores numéricos
+                          </p>
+                          <p
+                            *ngIf="form.get('otroTelefono')?.hasError('min')"
+                            style="
+                              color: red;
+                              font-weight: bold;
+                              text-transform: uppercase;
+                            "
+                          >
+                            Número de teléfono no valido
+                          </p>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">*Estado Civil:</p>
+                          <select
+                            name="miselect"
+                            formControlName="estadoCivil"
+                            class="form-control"
+                            style="height: 37px !important"
+                          >
+                            <option
+                              [value]="item"
+                              *ngFor="let item of estadoCivilValores"
+                            >
+                              {{ item }}
+                            </option>
+                          </select>
+                          <div
+                            *ngIf="
+                              form.get('estadoCivil')?.errors &&
+                              form.get('estadoCivil')?.touched
+                            "
+                            style="
+                              color: red;
+                              font-weight: bold;
+                              text-transform: uppercase;
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form.get('estadoCivil')?.hasError('required')
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <!--Fin Telefono Estado civil-->
+                      <!--Moneda Cuenta Iban-->
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">*Moneda:</p>
+                          <select
+                            name="miselect"
+                            formControlName="moneda"
+                            class="form-control"
+                            style="height: 37px !important"
+                          >
+                            <option
+                              *ngFor="let item of moneda"
+                              [value]="item"
+                              [selected]="item === 'Colones'"
+                            >
+                              {{ item }}
+                            </option>
+                          </select>
+                          <div
+                            *ngIf="
+                              form.get('moneda')?.errors &&
+                              form.get('moneda')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="form.get('moneda')?.hasError('required')"
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">*Cuenta IBAN:</p>
+                          <div class="input-group-prepend">
+                            <span
+                              class="input-group-text"
+                              style="height: 37px !important"
+                              id="basic-addon1"
+                              >CR</span
+                            >
+
+                            <input
+                              class="form-control"
+                              id="cuentaIBAN"
+                              formControlName="cuentaIBAN"
+                              maxlength="20"
+                              style="height: 37px !important"
+                            />
+                          </div>
+                          <div
+                            *ngIf="
+                              form.get('cuentaIBAN')?.errors &&
+                              form.get('cuentaIBAN')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form.get('cuentaIBAN')?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                            <p
+                              *ngIf="
+                                form.get('cuentaIBAN')?.hasError('pattern')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Solo se permiten valores numéricos
+                            </p>
+                            <p
+                              *ngIf="
+                                form.get('cuentaIBAN')?.hasError('maxLength')
+                              "
+                            >
+                              La cuenta IBAN no puede superar los 20
+                              caracteres,Favor agregar solo los valores
+                              numericos
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <!--Fin Telefono Estado civil-->
+                      <!--Direccion-->
+                      <hr width="98%" color="lightgrey" />
+                      <p
+                        style="
+                          font-size: 20px;
+                          color: lightgrey;
+                          text-align: left !important;
+                        "
+                      >
+                        Dirección
+                      </p>
+                      <!--Pais Provincia-->
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">*País:</p>
+                          <select
+                            name="miselect"
+                            formControlName="pais"
+                            class="form-control"
+                            style="height: 37px !important"
+                          >
+                            <option
+                              [value]="item"
+                              *ngFor="let item of paisValores"
+                            >
+                              {{ item }}
+                            </option>
+                          </select>
+                          <p
+                            [hidden]="PaisSinSeleccionar"
+                            style="
+                              color: red;
+                              font-weight: bold;
+                              text-transform: uppercase;
+                            "
+                          >
+                            Es un campo requerido
+                          </p>
+                          <div
+                            *ngIf="
+                              form.get('pais')?.errors &&
+                              form.get('pais')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="form.get('pais')?.hasError('required')"
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">*Provincia:</p>
+                          <select
+                            name="miselect"
+                            formControlName="provincia"
+                            class="form-control"
+                            style="height: 37px !important"
+                          >
+                            <option
+                              [value]="item"
+                              *ngFor="let item of provinciaValores"
+                            >
+                              {{ item }}
+                            </option>
+                          </select>
+                          <div
+                            *ngIf="
+                              form.get('provincia')?.errors &&
+                              form.get('provincia')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form.get('provincia')?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!--Fin Pais Provincia-->
+                      <!--Canton Distrito-->
+
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">*Cantón:</p>
+                          <select
+                            name="miselect"
+                            formControlName="canton"
+                            class="form-control"
+                            style="height: 37px !important"
+                          >
+                            <option
+                              [value]="item"
+                              *ngFor="let item of cantonValores"
+                            >
+                              {{ item }}
+                            </option>
+                          </select>
+                          <div
+                            *ngIf="
+                              form.get('canton')?.errors &&
+                              form.get('canton')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="form.get('canton')?.hasError('required')"
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">*Distrito:</p>
+                          <select
+                            name="miselect"
+                            formControlName="distrito"
+                            class="form-control"
+                            style="height: 37px !important"
+                          >
+                            <option
+                              [value]="item"
+                              *ngFor="let item of distritoValores"
+                            >
+                              {{ item }}
+                            </option>
+                          </select>
+                          <div
+                            *ngIf="
+                              form.get('distrito')?.errors &&
+                              form.get('distrito')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="form.get('distrito')?.hasError('required')"
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <!--Fin Canton Distrito-->
+                      <!--Direccion Exacta-->
+                      <div class="form-group mb-4">
+                        <p style="text-align: center">*Dirección exacta:</p>
+                        <textarea
+                          [class.is-dangert]="
+                            form.get('direccionExacta')?.errors
+                          "
+                          class="form-control"
+                          id="direccion"
+                          rows="4"
+                          cols="30"
+                          formControlName="direccionExacta"
+                        >
+                        </textarea>
+                        <div
+                          *ngIf="
+                            form.get('direccionExacta')?.errors &&
+                            form.get('direccionExacta')?.touched
+                          "
+                        >
+                          <p
+                            *ngIf="
+                              form.get('direccionExacta')?.hasError('required')
+                            "
+                            style="
+                              color: red;
+                              font-weight: bold;
+                              text-transform: uppercase;
+                            "
+                          >
+                            Es un campo requerido
+                          </p>
+                          <p
+                            *ngIf="
+                              form.get('direccionExacta')?.hasError('maxlength')
+                            "
+                            style="
+                              color: red;
+                              font-weight: bold;
+                              text-transform: uppercase;
+                            "
+                          >
+                            La dirección exacta no puede superar los 245
+                            caracteres
+                          </p>
+                        </div>
+                      </div>
+                      <!--Fin Direccion Exacta-->
+                      <!--Fin Direccion-->
+
+                      <!--Info Laboral-->
+                      <hr width="98%" color="lightgrey" />
+                      <p
+                        style="
+                          font-size: 20px;
+                          color: lightgrey;
+                          text-align: left !important;
+                        "
+                      >
+                        Información Laboral
+                      </p>
+                      <!--Sector Profesion-->
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">*Sector:</p>
+                          <select
+                            name="miselect"
+                            formControlName="sector"
+                            class="form-control"
+                            style="height: 37px !important"
+                          >
+                            <option
+                              [value]="item"
+                              *ngFor="let item of sectores"
+                            >
+                              {{ item }}
+                            </option>
+                          </select>
+                          <div
+                            *ngIf="
+                              form.get('sector')?.errors &&
+                              form.get('sector')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="form.get('sector')?.hasError('required')"
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">*Profesión:</p>
+                          <input
+                            class="form-control"
+                            id="Profesion"
+                            formControlName="profesion"
+                            style="height: 37px !important"
+                          />
+                          <div
+                            *ngIf="
+                              form.get('profesion')?.errors &&
+                              form.get('profesion')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form.get('profesion')?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <!--Fin Sector Profesion-->
+
+                      <!--Lugar de trabajo Salario Mensual-->
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">*Lugar de Trabajo:</p>
+                          <input
+                            class="form-control"
+                            id="lugarTrabajo"
+                            formControlName="lugarTrabajo"
+                            style="height: 37px !important"
+                          />
+                          <div
+                            *ngIf="
+                              form.get('lugarTrabajo')?.errors &&
+                              form.get('lugarTrabajo')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form.get('lugarTrabajo')?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">*Salario Mensual:</p>
+                          <input
+                            class="form-control"
+                            id="salarioMensual"
+                            formControlName="salarioMensual"
+                            style="height: 37px !important"
+                          />
+                          <div
+                            *ngIf="
+                              form.get('salarioMensual')?.errors &&
+                              form.get('salarioMensual')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form.get('salarioMensual')?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                            <p
+                              *ngIf="
+                                form.get('salarioMensual')?.hasError('pattern')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Solo se permiten valores numéricos
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <!--Fin Lugar de trabajo Salario Mensual-->
+
+                      <!--Tiempo laborado-->
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">
+                            *Tiempo Laborado (Meses):
+                          </p>
+                          <select
+                            name="miselect"
+                            formControlName="tiempoLaborado"
+                            class="form-control"
+                            style="height: 37px !important"
+                          >
+                            <option
+                              [value]="item"
+                              *ngFor="let item of tiempoLaborado"
+                            >
+                              {{ item }}
+                            </option>
+                          </select>
+                          <div
+                            *ngIf="
+                              form.get('tiempoLaborado')?.errors &&
+                              form.get('tiempoLaborado')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form.get('tiempoLaborado')?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                          </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">*Teléfono del trabajo:</p>
+                          <input
+                            class="form-control"
+                            id="telefonoTrabajo"
+                            formControlName="telefonoTrabajo"
+                            style="height: 37px !important"
+                          />
+                          <div
+                            *ngIf="
+                              form.get('telefonoTrabajo')?.errors &&
+                              form.get('telefonoTrabajo')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form
+                                  .get('telefonoTrabajo')
+                                  ?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                            <p
+                              *ngIf="
+                                form.get('telefonoTrabajo')?.hasError('pattern')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Solo se permiten valores numéricos
+                            </p>
+                            <p
+                              *ngIf="
+                                form.get('telefonoTrabajo')?.hasError('min')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Número de teléfono no valido
+                            </p>
+                          </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">
+                            *Dirección del trabajo:
+                          </p>
+                          <textarea
+                            class="form-control"
+                            id="direccionDelTrabajo"
+                            rows="4"
+                            cols="30"
+                            maxlength="245"
+                            formControlName="direccionDelTrabajo"
+                          >
+                          </textarea>
+                          <div
+                            *ngIf="
+                              form.get('direccionDelTrabajo')?.errors &&
+                              form.get('direccionDelTrabajo')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form
+                                  .get('direccionDelTrabajo')
+                                  ?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+
+                            <p
+                              *ngIf="
+                                form
+                                  .get('direccionDelTrabajo')
+                                  ?.hasError('maxlength')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              La dirección del trabajo no puede superar los 245
+                              caracteres
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!--Fin Info Laboral-->
+                      <!--Referencias-->
+                      <hr width="98%" color="lightgrey" />
+                      <p
+                        style="
+                          font-size: 20px;
+                          color: lightgrey;
+                          text-align: left !important;
+                        "
+                      >
+                        Referencia
+                      </p>
+
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">
+                            *Nombre Completo de la persona de referencia:
+                          </p>
+                          <input
+                            class="form-control"
+                            id="nombreCompletoDeLaReferencia"
+                            formControlName="nombreCompletoDeLaReferencia"
+                            style="height: 37px !important"
+                          />
+                          <div
+                            *ngIf="
+                              form.get('nombreCompletoDeLaReferencia')
+                                ?.errors &&
+                              form.get('nombreCompletoDeLaReferencia')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form
+                                  .get('nombreCompletoDeLaReferencia')
+                                  ?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                          </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">*Parentesco:</p>
+                          <input
+                            class="form-control"
+                            id="parentesco"
+                            formControlName="parentesco"
+                            required="true"
+                            style="height: 37px !important"
+                          />
+
+                          <div
+                            *ngIf="
+                              form.get('parentesco')?.errors &&
+                              form.get('parentesco')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form.get('parentesco')?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!--Fin nombre parentesco-->
+                      <!--Telefono referencia-->
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">
+                            *Telefono de la persona de referencia:
+                          </p>
+                          <input
+                            class="form-control"
+                            id="numeroDeTelefono"
+                            formControlName="numeroDeTelefono"
+                            style="height: 37px !important"
+                          />
+                          <div
+                            *ngIf="
+                              form.get('numeroDeTelefono')?.errors &&
+                              form.get('numeroDeTelefono')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form
+                                  .get('numeroDeTelefono')
+                                  ?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                            <p
+                              *ngIf="
+                                form
+                                  .get('numeroDeTelefono')
+                                  ?.hasError('pattern')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Solo se permiten valores numéricos
+                            </p>
+                            <p
+                              *ngIf="
+                                form.get('numeroDeTelefono')?.hasError('min')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Número de teléfono no valido
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <!--Telefono referencia-->
+
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">
+                            *Nombre Completo de la persona de referencia 2:
+                          </p>
+                          <input
+                            class="form-control"
+                            id="nombreCompletoDeLaReferencia2"
+                            formControlName="nombreCompletoDeLaReferencia2"
+                            style="height: 37px !important"
+                          />
+                          <div
+                            *ngIf="
+                              form.get('nombreCompletoDeLaReferencia2')
+                                ?.errors &&
+                              form.get('nombreCompletoDeLaReferencia2')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form
+                                  .get('nombreCompletoDeLaReferencia2')
+                                  ?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                          </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">*Parentesco 2:</p>
+                          <input
+                            class="form-control"
+                            id="parentesco2"
+                            formControlName="parentesco2"
+                            required="true"
+                            style="height: 37px !important"
+                          />
+
+                          <div
+                            *ngIf="
+                              form.get('parentesco2')?.errors &&
+                              form.get('parentesco2')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form.get('parentesco2')?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!--Fin nombre parentesco-->
+                      <!--Telefono referencia-->
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">
+                            *Telefono de la persona de referencia 2:
+                          </p>
+                          <input
+                            class="form-control"
+                            id="numeroDeTelefono2"
+                            formControlName="numeroDeTelefono2"
+                            style="height: 37px !important"
+                          />
+                          <div
+                            *ngIf="
+                              form.get('numeroDeTelefono2')?.errors &&
+                              form.get('numeroDeTelefono2')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form
+                                  .get('numeroDeTelefono2')
+                                  ?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                            <p
+                              *ngIf="
+                                form
+                                  .get('numeroDeTelefono')
+                                  ?.hasError('pattern')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Solo se permiten valores numéricos
+                            </p>
+                            <p
+                              *ngIf="
+                                form.get('numeroDeTelefono')?.hasError('min')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Número de teléfono no valido
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <!--Telefono referencia-->
+                      <!--Fin Referencias-->
+
+                      <hr width="98%" color="lightgrey" />
+                      <p
+                        style="
+                          font-size: 20px;
+                          color: lightgrey;
+                          text-align: left !important;
+                        "
+                      >
+                        Firma de Contrato
+                      </p>
+                      <!--Desea recibir mensajeria-->
+                      <div class="form-group mb-4">
+                        <div
+                          Class="form-group"
+                          Style="width:90%; margin-left:20px;"
+                        >
+                          <p style="text-align: center">
+                            *Opciones Firma Contrato
+                          </p>
+                          <select
+                            name="miselect"
+                            formControlName="deseaRecibirMensajeria"
+                            class="form-control"
+                            style="height: 37px !important"
+                          >
+                            <option
+                              [value]="item"
+                              *ngFor="let item of deseaRecibirMensajeria"
+                            >
+                              {{ item }}
+                            </option>
+                          </select>
+                          <div
+                            *ngIf="
+                              form.get('deseaRecibirMensajeria')?.errors &&
+                              form.get('deseaRecibirMensajeria')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form
+                                  .get('deseaRecibirMensajeria')
+                                  ?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <!--Fin Desea recibir mensajeria-->
+                      <!--Direccion donde desea recibir la mensajeria-->
+                      <div class="form-group mb-4" [hidden]="ActivarDireccion">
+                        <p style="text-align: center">
+                          *Dirección donde desea recibir mensajeria:
+                        </p>
+                        <textarea
+                          class="form-control"
+                          id="direccionDeEnvioMensajeria"
+                          rows="4"
+                          cols="30"
+                          maxlength="246"
+                          formControlName="direccionDeEnvioMensajeria"
+                        >
+                        </textarea>
+                        <div
+                          *ngIf="
+                            form.get('direccionDeEnvioMensajeria')?.errors &&
+                            form.get('direccionDeEnvioMensajeria')?.touched
+                          "
+                        >
+                          <p
+                            *ngIf="
+                              form
+                                .get('direccionDeEnvioMensajeria')
+                                ?.hasError('maxlength')
+                            "
+                            style="
+                              color: red;
+                              font-weight: bold;
+                              text-transform: uppercase;
+                            "
+                          >
+                            La dirección de envio no puede superar los 245
+                            caracteres
+                          </p>
+                        </div>
+                      </div>
+                      <!--Fin Direccion donde desea recibir la mensajeria-->
+
+                      <hr width="98%" color="lightgrey" />
+                      <p
+                        style="
+                          font-size: 20px;
+                          color: lightgrey;
+                          text-align: left !important;
+                        "
+                      >
+                        Documentos
+                      </p>
+                      <!--Orden patronal-->
+
+                      <div class="form-group mb-4">
+                        <div
+                          Class="form-group"
+                          Style="width:90%; margin-left:20px;"
+                        >
+                          <b style="text-align: left"
+                            >Si adjunta la orden patronal su depósito estará en
+                            24 horas <br />
+                            Si NO adjunta la orden patronal su depósito se
+                            tardará más de 24 horas</b
+                          >
+                          <input
+                            type="file"
+                            title="Cargar Orden Patronal"
+                            (change)="onFileChanged($event)"
+                            lang="es"
+                            accept="image/png, .jpeg, .jpg, .pdf"
+                            class="form-control"
+                            style="height: 42px !important"
+                          />
+                          <br />
+                        </div>
+                      </div>
+                      <!--Fn Orden patronal-->
+                      <!--Orden patronal-->
+
+                      <div class="form-group mb-4">
+                        <div
+                          Class="form-group"
+                          Style="width:90%; margin-left:20px;"
+                        >
+                          <b style="text-align: left"
+                            >Si adjunta una fotocopia de la cédula por ambos
+                            lados su depósito estará en 24 horas<br />
+                            Si NO adjunta una fotocopia de la cédula su depósito
+                            se tardará más de 24 horas</b
+                          >
+
+                          <input
+                            type="file"
+                            title="Cargar cedula"
+                            (change)="onFileChangedCedula($event)"
+                            lang="es"
+                            accept="image/png, .jpeg, .jpg, .pdf"
+                            class="form-control"
+                            style="height: 42px !important"
+                          />
+                          <br />
+                        </div>
+                      </div>
+                      <!--Fn Orden patronal-->
+                      <hr width="98%" color="lightgrey" />
+
+                      <p
+                        style="
+                          font-size: 20px;
+                          color: lightgrey;
+                          text-align: left !important;
+                        "
+                      >
+                        Hora de contacto: "RAYO CR S.A. necesita comunicarse con
+                        usted para validar su identidad, este es el
+                        <strong>ÚLTIMO</strong> paso para su
+                        <strong>DESEMBOLSO</strong>"
+                      </p>
+
+                      <!--Hora inicio hora fin-->
+
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">
+                            *Hora preferida de contacto desde:
+                          </p>
+                          <select
+                            name="miselect"
+                            formControlName="horaPreferidaContacto"
+                            class="form-control"
+                            style="height: 37px !important"
+                          >
+                            <option
+                              [value]="item"
+                              *ngFor="let item of horasContactoInicio"
+                            >
+                              {{ item }}
+                            </option>
+                          </select>
+                          <div
+                            *ngIf="
+                              form.get('horaPreferidaContacto')?.errors &&
+                              form.get('horaPreferidaContacto')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form
+                                  .get('horaPreferidaContacto')
+                                  ?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                          <p style="text-align: left">*Hasta:</p>
+                          <select
+                            name="miselect"
+                            formControlName="hasta"
+                            class="form-control"
+                            style="height: 37px !important"
+                          >
+                            <option
+                              [value]="item"
+                              *ngFor="let item of horasContactoFin"
+                            >
+                              {{ item }}
+                            </option>
+                          </select>
+                          <div
+                            *ngIf="
+                              form.get('hasta')?.errors &&
+                              form.get('hasta')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="form.get('hasta')?.hasError('required')"
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <!--Fin Hora inicio hora fin-->
+                      <hr width="98%" color="lightgrey" />
+                      <div class="form-group mb-4">
+                        <div
+                          Class="form-group"
+                          Style="width:90%; margin-left:20px;"
+                        >
+                          <p style="text-align: center">
+                            *¿Usted diligenció este formulario por usted mismo?
+                          </p>
+                          <select
+                            name="miselect"
+                            formControlName="requirioAyuda"
+                            class="form-control"
+                            style="height: 30px"
+                            style="height: 37px !important"
+                          >
+                            <option
+                              [value]="item"
+                              *ngFor="let item of requirioAyuda"
+                            >
+                              {{ item }}
+                            </option>
+                          </select>
+                          <div
+                            *ngIf="
+                              form.get('requirioAyuda')?.errors &&
+                              form.get('requirioAyuda')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form.get('requirioAyuda')?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!--Como nos conocieron-->
+                      <div class="form-group mb-4">
+                        <div
+                          Class="form-group"
+                          Style="width:90%; margin-left:20px;"
+                        >
+                          <p style="text-align: center">
+                            *¿Cómo se enteró de nuestros servicios?
+                          </p>
+                          <select
+                            name="miselect"
+                            formControlName="comoNosConocieron"
+                            class="form-control"
+                            style="height: 30px"
+                            style="height: 37px !important"
+                          >
+                            <option
+                              [value]="item"
+                              *ngFor="let item of comoNosConocieron"
+                            >
+                              {{ item }}
+                            </option>
+                          </select>
+                          <div
+                            *ngIf="
+                              form.get('comoNosConocieron')?.errors &&
+                              form.get('comoNosConocieron')?.touched
+                            "
+                          >
+                            <p
+                              *ngIf="
+                                form
+                                  .get('comoNosConocieron')
+                                  ?.hasError('required')
+                              "
+                              style="
+                                color: red;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Es un campo requerido
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!--Fin como nos conocieron-->
+                      <div
+                        class="alert alert-danger"
+                        [hidden]="ErrorAlCrearLaSolicitud"
+                      >
+                        <strong>Error!</strong>
+                        Ocurrio un error al crear la solicitud.
+                      </div>
+                      <div
+                        class="alert alert-success"
+                        [hidden]="ProcesandoSolicitudSucces"
+                      >
+                        <strong>Espera!</strong>
+                        Estamos procesando tu solicitud y generando la propuesta
+                      </div>
+
+                      <div
+                        class="alert alert-danger"
+                        [hidden]="CamposSinCompletar"
+                      >
+                        <strong>Ups! </strong>Al parecer hay errores en el
+                        formulario,<br />
+                        por favor revisa que toda la información este correcta.
+                      </div>
+
+                      <div
+                        class="alert alert-danger"
+                        [hidden]="ErrorTamanoArchivos"
+                      >
+                        <strong>Ups! </strong>Al parecer el tamaño de los
+                        archivos,<br />
+                        supera el limite permitido, por favor selecciona
+                        archivos con un tamano en mega bytes menor a 3MB.
+                      </div>
+                      <!--Botones-->
+                      <div class="form-group mb-4">
+                        <a [routerLink]="['']" class="btn btn btn-danger"
+                          >Cancelar</a
+                        >
+                        &nbsp;
+                        <button
+                          type="submit"
+                          [disabled]="DesactivarBoton"
+                          class="btn btn btn-info"
+                        >
+                          Siguiente
+                        </button>
+                      </div>
+                      <!--Fin Botones-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--Fin Form-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff">
+  <img
+    src="https://res.cloudinary.com/dhp4vmxxf/image/upload/v1612140669/35771931234507.564a1d2403b3a_pt3lfo.gif"
+  />
+</ngx-spinner>

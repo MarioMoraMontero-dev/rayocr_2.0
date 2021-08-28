@@ -1,0 +1,204 @@
+<form [formGroup]="form" (ngSubmit)="actualizarDireccion($event)">
+  <div class="container">
+    <div class="col-lg-12">
+      <div class="card bg-gradient-secondary shadow">
+        <div class="card-body p-lg-5">
+          <!--Pais Provincia-->
+          <div class="row">
+            <div class="form-group col-md-6">
+              <p style="text-align: left">*País:</p>
+              <select
+                name="miselect"
+                formControlName="pais"
+                class="form-control"
+                style="height: 37px !important"
+              >
+                <option [value]="item" *ngFor="let item of paisValores">
+                  {{ item }}
+                </option>
+              </select>
+              <p
+                [hidden]="PaisSinSeleccionar"
+                style="color: red; font-weight: bold; text-transform: uppercase"
+              >
+                Es un campo requerido
+              </p>
+              <div
+                *ngIf="form.get('pais')?.errors && form.get('pais')?.touched"
+              >
+                <p
+                  *ngIf="form.get('pais')?.hasError('required')"
+                  style="
+                    color: red;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                  "
+                >
+                  Es un campo requerido
+                </p>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <p style="text-align: left">*Provincia:</p>
+              <select
+                name="miselect"
+                formControlName="provincia"
+                class="form-control"
+                style="height: 37px !important"
+              >
+                <option [value]="item" *ngFor="let item of provinciaValores">
+                  {{ item }}
+                </option>
+              </select>
+              <div
+                *ngIf="
+                  form.get('provincia')?.errors &&
+                  form.get('provincia')?.touched
+                "
+              >
+                <p
+                  *ngIf="form.get('provincia')?.hasError('required')"
+                  style="
+                    color: red;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                  "
+                >
+                  Es un campo requerido
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!--Fin Pais Provincia-->
+          <!--Canton Distrito-->
+
+          <div class="row">
+            <div class="form-group col-md-6">
+              <p style="text-align: left">*Cantón:</p>
+              <select
+                name="miselect"
+                formControlName="canton"
+                class="form-control"
+                style="height: 37px !important"
+              >
+                <option [value]="item" *ngFor="let item of cantonValores">
+                  {{ item }}
+                </option>
+              </select>
+              <div
+                *ngIf="
+                  form.get('canton')?.errors && form.get('canton')?.touched
+                "
+              >
+                <p
+                  *ngIf="form.get('canton')?.hasError('required')"
+                  style="
+                    color: red;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                  "
+                >
+                  Es un campo requerido
+                </p>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <p style="text-align: left">*Distrito:</p>
+              <select
+                name="miselect"
+                formControlName="distrito"
+                class="form-control"
+                style="height: 37px !important"
+              >
+                <option [value]="item" *ngFor="let item of distritoValores">
+                  {{ item }}
+                </option>
+              </select>
+              <div
+                *ngIf="
+                  form.get('distrito')?.errors && form.get('distrito')?.touched
+                "
+              >
+                <p
+                  *ngIf="form.get('distrito')?.hasError('required')"
+                  style="
+                    color: red;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                  "
+                >
+                  Es un campo requerido
+                </p>
+              </div>
+            </div>
+          </div>
+          <!--Fin Canton Distrito-->
+          <!--Direccion Exacta-->
+          <div class="form-group mb-4">
+            <p style="text-align: center">*Dirección exacta:</p>
+            <textarea
+              class="form-control"
+              id="direccion"
+              rows="4"
+              cols="30"
+              maxlength="255"
+              formControlName="direccionExacta"
+            >
+            </textarea>
+            <div
+              *ngIf="
+                form.get('direccionExacta')?.errors &&
+                form.get('direccionExacta')?.touched
+              "
+            >
+              <p
+                *ngIf="form.get('direccionExacta')?.hasError('required')"
+                style="color: red; font-weight: bold; text-transform: uppercase"
+              >
+                Es un campo requerido
+              </p>
+              <p
+                *ngIf="form.get('direccionExacta')?.hasError('maxlength')"
+                style="color: red; font-weight: bold; text-transform: uppercase"
+              >
+                La dirección exacta no puede superar los 245 caracteres
+              </p>
+            </div>
+          </div>
+          <!--Fin Direccion Exacta-->
+          <div class="alert alert-danger" [hidden]="ErrorAlCrearLaSolicitud">
+            <strong>Error!</strong>
+            Ocurrio un error al crear la solicitud.
+          </div>
+          <div class="alert alert-success" [hidden]="ProcesandoSolicitudSucces">
+            <strong>Espera!</strong>
+            Estamos procesando tu solicitud y generando la propuesta
+          </div>
+          <!--Botones-->
+          <div class="form-group mb-4">
+            <a [routerLink]="['']" class="btn btn btn-danger">Cancelar</a>
+            &nbsp;
+            <button
+              type="submit"
+              [disabled]="form.invalid"
+              class="btn btn btn-success"
+              (click)="getToken()"
+            >
+              Siguiente
+            </button>
+          </div>
+          <!--Fin Botones-->
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff">
+  <img
+    src="https://res.cloudinary.com/dhp4vmxxf/image/upload/v1612140669/35771931234507.564a1d2403b3a_pt3lfo.gif"
+  />
+</ngx-spinner>

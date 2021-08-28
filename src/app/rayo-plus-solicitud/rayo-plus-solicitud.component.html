@@ -1,0 +1,181 @@
+<main role="main">
+  <!--Vista de propuestas rayo plus-->
+  <section class="text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">
+        <span style="color: purple; font-weight: bold">RAYO</span>
+        <span style="color: orange; font-weight: bold">PLUS</span>
+      </h1>
+      <p class="lead text-muted">
+        Seleccione el monto por el cual quiere solicitar su préstamo:
+      </p>
+      <p style="text-align: center !important">
+        <button
+          *ngFor="let l of montosDisponibles; let i = index"
+          (click)="obtenervalor(l)"
+          [disabled]="desactivarMontos(i)"
+          [ngStyle]="{
+            'background-color': desactivarMontos(i) ? 'gray' : 'orange'
+          }"
+          style="margin: 10px !important; color: white"
+          class="btn"
+          title="Solicitar un préstamo de: {{ l }} "
+        >
+          {{ l }}
+        </button>
+        &nbsp;&nbsp;
+      </p>
+
+      <p class="lead text-muted">
+        El monto seleccionado es: {{ valorSeleccionado | currency: "₡" }}
+      </p>
+      <hr />
+      <section [hidden]="mostrarDatos">
+        <p class="lead text-muted">
+          Genial ahora selecciona las cuotas del préstamo:
+        </p>
+
+        <p Class="BLUE" style="height: 33px">{{ numCuota }}</p>
+        <div class="">
+          <div class="slidecontainer">
+            <input
+              type="range"
+              min="15"
+              max="45"
+              class="slider"
+              step="15"
+              id="dayRange"
+              value="{{ diaSeleccionado }}"
+              [(ngModel)]="diaSeleccionado"
+              (ngModelChange)="calcularMontos()"
+            />
+          </div>
+        </div>
+
+        <hr />
+        <h3>
+          <span style="color: purple; font-weight: bold">PROPU</span>
+          <span style="color: orange; font-weight: bold">ESTA</span>
+          &nbsp;&nbsp;
+          <span style="color: purple; font-weight: bold"> RAYO</span>
+          <span style="color: orange; font-weight: bold">PLUS</span>
+        </h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" style="color: white; background-color: purple">
+                Concepto
+              </th>
+              <th scope="col" style="color: white; background-color: orange">
+                Montos
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Valor Elegido:</td>
+              <td>{{ valorSeleccionado | currency: "₡" }}</td>
+            </tr>
+            <tr>
+              <td>Interés:</td>
+              <td>{{ interes | currency: "₡" }}</td>
+            </tr>
+            <tr>
+              <td>Cupo Administrativo:</td>
+              <td>{{ aval | currency: "₡" }}</td>
+            </tr>
+
+            <tr>
+              <td>Monto Bruto Tecnología:</td>
+              <td>{{ tecnologia | currency: "₡" }}</td>
+            </tr>
+            <tr>
+              <td>Descuento Tecnología::</td>
+              <td>{{ descuento | currency: "₡" }}</td>
+            </tr>
+            <tr>
+              <td>Monto Neto Tecnología:</td>
+              <td>{{ servicioFE | currency: "₡" }}</td>
+            </tr>
+            <tr>
+              <td>I.V.A:</td>
+              <td>{{ iva | currency: "₡" }}</td>
+            </tr>
+            <tr>
+              <td><strong>TOTAL A PAGAR:</strong></td>
+              <td>{{ totalPagar | currency: "₡" }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table">
+          <tr id="1Row">
+            <th style="text-align: center">Abono</th>
+            <th style="text-align: center">Fecha de Pago</th>
+            <th style="text-align: center">Monto</th>
+          </tr>
+
+          <tr id="fecha1">
+            <td style="text-align: center" id="newdate">Abono unico</td>
+            <td style="text-align: center; color: black" id="pagos">
+              <span>
+                {{ fecha1 }}
+              </span>
+            </td>
+            <td style="text-align: center; color: black" id="pagos">
+              <span>
+                {{ Abono1 | currency: "₡" }}
+              </span>
+            </td>
+          </tr>
+          <tr id="fecha2">
+            <td style="text-align: center" id="newdate">
+              <span>
+                {{ Abono2Texto }}
+              </span>
+            </td>
+            <td style="text-align: center; color: black" id="pagos">
+              <span>
+                {{ fecha2 }}
+              </span>
+            </td>
+            <td style="text-align: center; color: black" id="pagos">
+              <span>
+                {{ Abono2 | currency: "₡" }}
+              </span>
+            </td>
+          </tr>
+          <tr id="fecha3">
+            <td style="text-align: center" id="newdate">Abono final</td>
+            <td style="text-align: center; color: black" id="pagos">
+              <span>
+                {{ fecha3 }}
+              </span>
+            </td>
+            <td style="text-align: center; color: black" id="pagos">
+              <span>
+                {{ Abono3 | currency: "₡" }}
+              </span>
+            </td>
+          </tr>
+        </table>
+        <p></p>
+        <br />
+        <div class="alert alert-danger" [hidden]="ErrorAlCrearLaSolicitud">
+          <strong>Error!</strong>
+          Ocurrio un error al crear la solicitud.
+        </div>
+        <div class="alert alert-success" [hidden]="ProcesandoSolicitudSucces">
+          <strong>Espera!</strong>
+          Estamos procesando tu solicitud y generando la propuesta
+        </div>
+        <p></p>
+        <button class="btn btn-primary" (click)="getToken()">
+          Solicitar Préstamo
+        </button>
+        <p></p>
+      </section>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light"></div>
+</main>

@@ -1,0 +1,23 @@
+.light {
+    color: #fff !important;
+}
+
+h5 {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 700;
+    letter-spacing: normal;
+    margin-bottom: 24px;
+}
+.page-footer{
+    color:#fff;
+}
+ul {
+    list-style-type: none;
+    font-size: 14px;
+    padding: 0px;
+  }
+  i{
+    float: left;
+    margin-right: 10px;
+  }

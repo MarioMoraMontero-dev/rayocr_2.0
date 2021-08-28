@@ -1,0 +1,39 @@
+{
+  "id": "",
+  "nombre": "",
+  "pais": "",
+  "provincia": "",
+  "caton": "",
+  "distrito": "",
+  "lugarDeTrabajo": "",
+  "mobilePhone": "",
+  "phone": "",
+  "cedula": "",
+  "email": "",
+  "salarioReportado": "",
+  "numPrestamosFirmados": "",
+  "prestamos": [
+    {
+      "codigoPrestamo": "",
+      "montoPrestamo": "",
+      "tecnologia": "",
+      "interes": "",
+      "fecha1": "",
+      "fecha2": "",
+      "fecha3": "",
+      "plazo": "",
+      "tipoDescuento": "",
+      "descuento": "",
+      "totalPagar": "",
+      "pagos": [
+        {
+          "estado": "",
+          "fechaPago": "",
+          "montoPagar": "",
+          "mora": "",
+          "totalMora": ""
+        }
+      ]
+    }
+  ]
+}

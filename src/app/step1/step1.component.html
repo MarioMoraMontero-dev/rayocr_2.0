@@ -1,0 +1,975 @@
+<div Style="background: #fff;" class="container-fluid">
+  <br />
+  <br />
+  <br />
+  <br />
+
+  <div class="">
+    <div>
+      <div class="block-ce" Style="max-height:4%;">
+        <div class="">
+          <div Class="col-md-12">
+            <img
+              Style="width:100%;"
+              src="https://storage.googleapis.com/www.rayo.cr/imagenesRayo/RAYOCol_Silder1.png"
+            />
+          </div>
+          <br />
+          <div
+            class="col-md-7"
+            Style="margin: 0 auto; background: #fff; position: relative; bottom: 152px;text-align:center;"
+          >
+            <div id="frm">
+              <div class="row">
+                <div class="col-md-6 col-xs-12 col-sm-12">
+                  <h6 class="GRIS">VALOR A SOLICITAR:</h6>
+                  <p class="BLUE">{{ valorSolicitar | currency: "₡" }}</p>
+                  <div title="" mode="edit">
+                    <div class="">
+                      <div class="slidecontainer">
+                        <input
+                          type="range"
+                          min="20000"
+                          max="60000"
+                          class="slider"
+                          step="5000"
+                          id="myRange"
+                          value="{{ valorSolicitar }}"
+                          [(ngModel)]="valorSolicitar"
+                          (ngModelChange)="calcularMontos()"
+                        />
+
+                        <p Class="rangos" Style="float:left">₡20,000.00</p>
+                        <p Class="rangos" Style="float:right;">₡100,000.00</p>
+                      </div>
+                    </div>
+                    <hr Style=" margin-top: 34px;" />
+
+                    <div Class="caja">
+                      <p Style="padding-top:10px;">
+                        Interés: {{ interes | currency: "₡" }}
+                      </p>
+
+                      <p style="float: left">
+                        Cupo Administrativo: {{ aval | currency: "₡" }}
+                      </p>
+                      <p>
+                        <a
+                          href="#"
+                          data-tooltip="Cupo administrativo: Es opcional, siempre y cuando nos hagas llegar un certificado de una póliza, fianza o aval que represente garantías para el pago, tomada de manera individual con otra entidad legalmente constituida cuyo beneficiario deberá aparecer a nombre de RAYOCR S.A, la cual debe ser aprobada previamente por nosotros."
+                          ><i
+                            style="margin-top: 6px; margin-left: 10px"
+                            class="fas fa-info-circle"
+                          ></i
+                        ></a>
+                      </p>
+
+                      <p style="float: left">
+                        Monto Bruto Tecnología :
+                        {{ tecnologia | currency: "₡" }}
+                      </p>
+                      <p>
+                        <a
+                          href="#"
+                          data-tooltip="Este cargo te abre las puertas de toda nuestra plataforma y sus beneficios. Es opcional, pero aceptarlo es obtener los servicios adicionales a los canales tradicionales para el manejo de tu cupo de crédito. Cambias las filas, los turnos y los papeleos, por un servicio simple, rápido y 100% digital. Además podrás acumular puntos, obtener descuentos y descargar cupones de nuestras marcas aliadas.  "
+                          ><i
+                            style="margin-top: 6px; margin-left: 10px"
+                            class="fas fa-info-circle"
+                          ></i
+                        ></a>
+                      </p>
+
+                      <p style="float: left">
+                        Monto Neto Tecnología : {{ tecnologia | currency: "₡" }}
+                      </p>
+                      <p>
+                        <a href="#" data-tooltip=""
+                          ><i style="margin-top: 6px; margin-left: 10px"></i
+                        ></a>
+                      </p>
+
+                      <p style="float: left">
+                        I.V.A: {{ iva | currency: "₡" }}
+                      </p>
+                      <p>
+                        <a
+                          href="#"
+                          data-tooltip="(Monto Neto Tecnología + Cupo Administrativo) * 13% "
+                          ><i
+                            style="margin-top: 6px; margin-left: 10px"
+                            class="fas fa-info-circle"
+                          ></i
+                        ></a>
+                      </p>
+
+                      <div style="clear: both"></div>
+                    </div>
+
+                    <!--
+                                        <div Class="caja2">
+                                            <p Style="padding-top:10px;">Sub total: {{subtotal|currency:'₡'}}</p>
+                                        </div>
+                                        -->
+                    <div Class="caja3">
+                      <p>TOTAL A PAGAR: {{ totalPagar | currency: "₡" }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                  <h6 Class="GRIS">Elige sus cuotas:</h6>
+                  <p Class="BLUE" style="height: 33px">{{ numCuota }}</p>
+                  <div class="">
+                    <div class="slidecontainer">
+                      <input
+                        type="range"
+                        min="15"
+                        max="45"
+                        class="slider"
+                        step="15"
+                        id="dayRange"
+                        value="{{ diaSeleccionado }}"
+                        [(ngModel)]="diaSeleccionado"
+                        (ngModelChange)="calcularMontos()"
+                      />
+                    </div>
+                  </div>
+                  <hr Style=" margin-top: 34px;" />
+                  <h6 Class="GRIS2">ABONOS:</h6>
+                  <table style="width: 100%">
+                    <tr id="1Row" Class="">
+                      <th
+                        Class="BLUE"
+                        style="text-align: center; font-size: 16px"
+                      >
+                        Abono
+                      </th>
+                      <th
+                        Class="BLUE"
+                        style="text-align: center; font-size: 16px"
+                      >
+                        Fecha de Pago
+                      </th>
+
+                      <th
+                        Class="BLUE"
+                        style="text-align: center; font-size: 16px"
+                      >
+                        Monto
+                      </th>
+                    </tr>
+                    <tr Id="1Row" Style="font-size:14px;">
+                      <td Id="1Rowtd1">{{ Abono1Texto }}</td>
+                      <td
+                        style="text-align: center; padding: 21px 0px"
+                        id="newdate"
+                      >
+                        {{ fecha1 }}
+                      </td>
+                      <td
+                        style="text-align: center; padding: 21px 0px"
+                        id="pagos"
+                      >
+                        {{ Abono1 | currency: "₡" }}
+                      </td>
+                    </tr>
+                    <tr id="2Row" Style="font-size:14px;">
+                      <td
+                        Id="2Rowtd1"
+                        style="text-align: center; padding: 21px 0px"
+                      >
+                        {{ Abono2Texto }}
+                      </td>
+                      <td
+                        style="text-align: center; padding: 21px 0px"
+                        id="newdate2"
+                      >
+                        {{ fecha2 }}
+                      </td>
+                      <td
+                        style="text-align: center; padding: 21px 0px"
+                        id="pagos1"
+                      >
+                        {{ Abono2 | currency: "₡" }}
+                      </td>
+                    </tr>
+                    <tr id="3Row" Style="font-size:14px;">
+                      <td
+                        Id="3Rowtd1"
+                        style="text-align: center; padding: 21px 0px"
+                      >
+                        Abono final
+                      </td>
+                      <td
+                        style="text-align: center; padding: 21px 0px"
+                        id="newdate3"
+                      >
+                        {{ fecha3 }}
+                      </td>
+                      <td
+                        style="text-align: center; padding: 21px 0px"
+                        id="pagos2"
+                      >
+                        {{ Abono3 | currency: "₡" }}
+                      </td>
+                    </tr>
+                  </table>
+                  <br />
+                  <div Style="float:right;">
+                    <a class="btn btn-danger" href="https://rayo.cr"
+                      >Cancelar</a
+                    >
+                    &nbsp;
+                    <button class="btn btn-info" (click)="goStep2()">
+                      Siguiente
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <br />
+              <div
+                style="
+                  background-color: #025fa3;
+                  height: 45%;
+                  color: white;
+                  text-align: center;
+                "
+              >
+                <br />
+                <br />
+                <label style="font-size: 20px; font-weight: bold"
+                  >Si quieres pagar tu saldo, paga aquí</label
+                >
+                <br />
+                <a
+                  href="https://www.recaudoenlinea.co.cr/VirtualPay?p=sWz+6tl7RGsQgQU1a74ruDxhitFxQUtwsK+g5kD+a44="
+                  class="btn btn-info"
+                  style="
+                    background-color: rgb(241, 179, 44) !important;
+                    border-color: rgb(241, 179, 44) !important;
+                  "
+                  >Pagar<img
+                    src="https://res.cloudinary.com/dhp4vmxxf/image/upload/v1615842365/icono-rayo_atdprh.png"
+                    width="30px"
+                    height="30px"
+                /></a>
+                <br />
+                <br />
+              </div>
+            </div>
+          </div>
+
+          <!--FOOTER PAGOS-->
+          <br /><br /><br /><br />
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Galeria de imagenes-->
+  <div class="container-fluid">
+    <div class="px-lg-5">
+      <!--Info-->
+      <h5 Style="text-align:center;width:100%;" Class="BLUE">
+        Perfil de Clientes
+      </h5>
+      <p Style="width: 100%; color: #025FA3;text-align:center;">
+        RAYO reconoce y valora tu récord crediticio. Hemos diseñado un programa
+        de membresía que premia tu historial de pagos.
+      </p>
+
+      <!--Fin Info-->
+
+      <div class="row">
+        <!-- Gallery item -->
+        <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+          <div class="bg-white rounded shadow-sm">
+            <img
+              src="https://storage.googleapis.com/www.rayo.cr/imagenesRayo/amigos_1.png"
+              alt=""
+              class="img-fluid card-img-top"
+            />
+            <div class="p-4"></div>
+          </div>
+        </div>
+        <!-- End -->
+
+        <!-- Gallery item -->
+        <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+          <div class="bg-white rounded shadow-sm">
+            <img
+              src="https://storage.googleapis.com/www.rayo.cr/imagenesRayo/amigos_2.png"
+              alt=""
+              class="img-fluid card-img-top"
+            />
+            <div class="p-4"></div>
+          </div>
+        </div>
+        <!-- End -->
+
+        <!-- Gallery item -->
+        <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+          <div class="bg-white rounded shadow-sm">
+            <img
+              src="https://storage.googleapis.com/www.rayo.cr/imagenesRayo/amigos_3.png"
+              alt=""
+              class="img-fluid card-img-top"
+            />
+            <div class="p-4"></div>
+          </div>
+        </div>
+        <!-- End -->
+
+        <!-- Gallery item -->
+        <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+          <div class="bg-white rounded shadow-sm">
+            <img
+              src="https://storage.googleapis.com/www.rayo.cr/imagenesRayo/amigos_4.png"
+              alt=""
+              class="img-fluid card-img-top"
+            />
+            <div class="p-4"></div>
+          </div>
+        </div>
+        <!-- End -->
+      </div>
+    </div>
+  </div>
+  <!--Fin galeria-->
+
+  <script>
+    function numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    const formatter = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "CRC",
+      minimumFractionDigits: 0,
+    });
+
+    //document.getElementById("2Row").style.display = "none";
+    document.getElementById("3Row").style.display = "none";
+    var selectVal = 0;
+    var slider = document.getElementById("myRange");
+    var sliderForDay = document.getElementById("dayRange");
+    var output = document.getElementById("demo");
+    var outputForDay = document.getElementById("daysRg");
+    var valor = document.getElementById("valor");
+    var interes = document.getElementById("interes");
+    var admin = document.getElementById("admin");
+    var subTotal = document.getElementById("subTotal");
+    var tecno = document.getElementById("tecno");
+    var iva = document.getElementById("iva");
+    var totalVal = document.getElementById("total");
+    // var conId = '{!$CurrentPage.parameters.contId}';
+
+    selectVal = sliderForDay.value;
+
+    var plazo = selectVal;
+    var d = new Date();
+
+    var intCalVal = Math.round(((slider.value * 0.3) / 12 / 30) * selectVal);
+    var segCalVal = Math.round(slider.value * 0.005);
+    var admCalVal = Math.round(slider.value * 0.125);
+
+    output.innerHTML = "₡" + numberWithCommas(slider.value);
+    outputForDay.innerHTML = sliderForDay.value;
+    valor.innerHTML = "₡" + slider.value;
+
+    if (selectVal == 0) {
+      interes.style.display = "none";
+      admin.style.display = "none";
+      subTotal.style.display = "none";
+      iva.style.display = "none";
+      tecno.style.display = "none";
+      totalVal.style.display = "none";
+    }
+
+    // formatter
+
+    //----------------------------------
+    var valSolicitado = getRealValuesFromSlice(slider.value);
+    var valInteres = getIntereses(valSolicitado, selectVal);
+    var valAval = getAval(valSolicitado, selectVal);
+    var valTecnologia = getTecnologia(valSolicitado, selectVal);
+    var ivaV = getIva(valTecnologia);
+    var valSubTotal = getSubTotal(
+      valSolicitado,
+      valInteres,
+      valTecnologia,
+      ivaV
+    );
+
+    var valTotal = getTotal(valSubTotal);
+
+    var sub = valSubTotal;
+    var techno = valTecnologia;
+    var ivaval = ivaV;
+    var ivaValue = valAval;
+    var totalFinalVal = valSubTotal;
+    //----------------------------------
+    interes.innerHTML = "₡" + numberWithCommas(valInteres);
+    admin.innerHTML = "₡" + numberWithCommas(valAval);
+    subTotal.innerHTML = "₡" + numberWithCommas(valSubTotal);
+    tecno.innerHTML = "₡" + numberWithCommas(valTecnologia);
+    iva.innerHTML = "₡" + numberWithCommas(ivaV);
+    totalVal.innerHTML = "₡" + numberWithCommas(valTotal);
+    //----------------------------------
+
+    var plazo = 1;
+    if (selectVal == 15) {
+      plazo = 1;
+    } else if (selectVal == 30) {
+      plazo = 2;
+    } else if (selectVal == 45) {
+      plazo = 3;
+    }
+
+    var Pagos = Math.round(totalFinalVal / plazo);
+    document.getElementById("pagos").innerHTML =
+      "₡" + numberWithCommas(Pagos.toFixed(2));
+    document.getElementById("pagos1").innerHTML =
+      "₡" + numberWithCommas(Pagos.toFixed(2));
+    document.getElementById("pagos2").innerHTML =
+      "₡" + numberWithCommas(Pagos.toFixed(2));
+    document.getElementById("newdate").innerHTML = firstDate(d);
+    document.getElementById("newdate2").innerHTML = secondDate(d);
+
+    slider.oninput = function () {
+      selectVal = sliderForDay.value;
+      switch (this.value) {
+        case "20000":
+          output.innerHTML = "₡" + numberWithCommas(20000);
+          valor.innerHTML = "₡" + numberWithCommas(20000);
+          break;
+        case "25000":
+          output.innerHTML = "₡" + numberWithCommas(25000);
+          valor.innerHTML = "₡" + numberWithCommas(25000);
+          break;
+        case "30000":
+          output.innerHTML = "₡" + numberWithCommas(30000);
+          valor.innerHTML = "₡" + numberWithCommas(30000);
+          break;
+        case "35000":
+          output.innerHTML = "₡" + numberWithCommas(35000);
+          valor.innerHTML = "₡" + numberWithCommas(35000);
+          break;
+        case "40000":
+          output.innerHTML = "₡" + numberWithCommas(40000);
+          valor.innerHTML = "₡" + numberWithCommas(40000);
+          break;
+        case "45000":
+          output.innerHTML = "₡" + numberWithCommas(50000);
+          valor.innerHTML = "₡" + numberWithCommas(50000);
+          break;
+        case "50000":
+          output.innerHTML = "₡" + numberWithCommas(75000);
+          valor.innerHTML = "₡" + numberWithCommas(75000);
+          break;
+        case "55000":
+          output.innerHTML = "₡" + numberWithCommas(100000);
+          valor.innerHTML = "₡" + numberWithCommas(100000);
+          break;
+      }
+      //output.innerHTML = "₡"+this.value;
+      //valor.innerHTML = "₡"+this.value;
+      //var int = Math.round(((((this.value)*24.87)/1200)/30)*selectVal);
+      //var seg = Math.round((this.value) * 0.005);
+      //admCalVal = Math.round((this.value) * 0.125);
+      //var sub = parseInt(this.value) + int +admCalVal;
+
+      //var techno = selectVal * 1000;
+      //var ivaValue = Math.round(((admCalVal + techno) * 19) / 100);
+      //var totalFinalVal = sub + techno + ivaValue;
+      //----------------------------------
+      var valSolicitado = getRealValuesFromSlice(slider.value);
+      slider.value;
+      var valInteres = getIntereses(valSolicitado, selectVal);
+      var valAval = getAval(valSolicitado, selectVal);
+      var valTecnologia = getTecnologia(valSolicitado, selectVal);
+      var ivaV = getIva(valTecnologia);
+      var valSubTotal = getSubTotal(
+        valSolicitado,
+        valInteres,
+        valTecnologia,
+        ivaV
+      );
+      var valTotal = getTotal(valSubTotal);
+      //----------------------------------
+      interes.innerHTML = "₡" + numberWithCommas(valInteres);
+      admin.innerHTML = "₡" + numberWithCommas(valAval);
+      subTotal.innerHTML = "₡" + numberWithCommas(valSubTotal);
+      tecno.innerHTML = "₡" + numberWithCommas(valTecnologia);
+      iva.innerHTML = "₡" + numberWithCommas(ivaV);
+      totalVal.innerHTML = "₡" + numberWithCommas(valTotal);
+      //----------------------------------
+      //tecno.innerHTML = "₡"+techno;
+
+      var plazo = 1;
+      if (selectVal == 15) {
+        plazo = 1;
+      } else if (selectVal == 30) {
+        plazo = 2;
+      } else if (selectVal == 45) {
+        plazo = 3;
+      }
+
+      var Pagos = Math.round(valTotal / plazo);
+      document.getElementById("pagos").innerHTML =
+        "₡" + numberWithCommas(Pagos.toFixed(2));
+      document.getElementById("pagos1").innerHTML =
+        "₡" + numberWithCommas(Pagos.toFixed(2));
+      document.getElementById("pagos2").innerHTML =
+        "₡" + numberWithCommas(Pagos.toFixed(2));
+    };
+
+    sliderForDay.oninput = function () {
+      selectVal = this.value;
+      outputForDay.innerHTML = this.value;
+      getSelectedValue(this.value);
+    };
+
+    function getSelectedValue(selectVal) {
+      if (selectVal == 0) {
+        interes.style.display = "none";
+        admin.style.display = "none";
+        subTotal.style.display = "none";
+        tecno.style.display = "none";
+        iva.style.display = "none";
+        totalVal.style.display = "none";
+      } else {
+        interes.style.display = "inline";
+        admin.style.display = "inline";
+        subTotal.style.display = "inline";
+        tecno.style.display = "inline";
+        iva.style.display = "inline";
+        totalVal.style.display = "inline";
+      }
+      var d = new Date();
+
+      var newdate;
+      var newdate2;
+      var newdate3;
+      if (selectVal != 0) {
+        slider = document.getElementById("myRange");
+
+        //----------------------------------
+        var valSolicitado = getRealValuesFromSlice(slider.value);
+        var valInteres = getIntereses(valSolicitado, selectVal);
+        var valAval = getAval(valSolicitado, selectVal);
+        var valTecnologia = getTecnologia(valSolicitado, selectVal);
+        var ivaV = getIva(valTecnologia);
+        var valSubTotal = getSubTotal(
+          valSolicitado,
+          valInteres,
+          valTecnologia,
+          ivaV
+        );
+        var valTotal = getTotal(valSubTotal);
+        //----------------------------------
+        interes.innerHTML = "₡" + numberWithCommas(valInteres);
+        admin.innerHTML = "₡" + numberWithCommas(valAval);
+        subTotal.innerHTML = "₡" + numberWithCommas(valSubTotal);
+        tecno.innerHTML = "₡" + numberWithCommas(valTecnologia);
+        iva.innerHTML = "₡" + numberWithCommas(ivaV);
+        totalVal.innerHTML = "₡" + numberWithCommas(valTotal);
+        //----------------------------------
+
+        var plazo = 1;
+        if (selectVal == 15) {
+          document.getElementById("1Rowtd1").innerText = "Abono único";
+          document.getElementById("2Row").style.display = "none";
+          document.getElementById("3Row").style.display = "none";
+          plazo = 1;
+        } else if (selectVal == 30) {
+          document.getElementById("1Rowtd1").innerText = "Primer Abono";
+          document.getElementById("2Rowtd1").innerText = "Abono Final";
+          document.getElementById("1Row").style.display = "";
+          document.getElementById("2Row").style.display = "";
+          document.getElementById("3Row").style.display = "none";
+          plazo = 2;
+        } else if (selectVal == 45) {
+          document.getElementById("1Rowtd1").innerText = "Primer Abono";
+          document.getElementById("2Rowtd1").innerText = "Segundo Abono";
+          document.getElementById("3Rowtd1").innerText = "Abono Final";
+          document.getElementById("2Row").style.display = "";
+          document.getElementById("3Row").style.display = "";
+          plazo = 3;
+        }
+
+        var Pagos = Math.round(valTotal / plazo);
+        document.getElementById("pagos").innerHTML =
+          "₡" + numberWithCommas(Pagos.toFixed(2));
+        document.getElementById("pagos1").innerHTML =
+          "₡" + numberWithCommas(Pagos.toFixed(2));
+        document.getElementById("pagos2").innerHTML =
+          "₡" + numberWithCommas(Pagos.toFixed(2));
+        document.getElementById("newdate").innerHTML = firstDate(d);
+        document.getElementById("newdate2").innerHTML = secondDate(d);
+        document.getElementById("newdate3").innerHTML = thirdDate(d);
+      }
+    }
+
+    function temp_Function() {
+      step2(
+        Number(valor.innerHTML.replace(/[^0-9.-]+/g, "")),
+        Number(interes.innerHTML.replace(/[^0-9.-]+/g, "")),
+        Number(admin.innerHTML.replace(/[^0-9.-]+/g, "")),
+        Number(tecno.innerHTML.replace(/[^0-9.-]+/g, "")),
+        Number(totalVal.innerHTML.replace(/[^0-9.-]+/g, "")),
+        Number(selectVal),
+        String(conId)
+      );
+    }
+
+    /*function confirmCancel() {
+                    var isCancel = confirm("¿Esta seguro que desea cancelar la solicitud de prestamo?");
+                    //var conId = '{!$CurrentPage.parameters.contId}';
+                    var origin = '{!$CurrentPage.parameters.origin}';
+                    if (isCancel && conId == ""){
+                        return true;
+                    }else if(conId !== ""){
+                        window.open("/apex/ContactDetail_New?Id="+conId+"&origin="+origin,"_self");
+                    }
+                    return false;
+                }*/
+
+    //Date Function to featch date.
+    function firstDate(tdate) {
+      var day = tdate.getDate();
+      var month = tdate.getMonth() + 1;
+      var year = tdate.getFullYear();
+      var newDate;
+      if (day >= 01 && day <= 06) {
+        newDate = 15 + "/" + month + "/" + year;
+      } else if (day >= 07 && day <= 21) {
+        if (month == 2) {
+          newDate = 28 + "/" + 2 + "/" + year;
+        } else {
+          newDate = 30 + "/" + month + "/" + year;
+        }
+      } else if (day >= 22 && day <= 31) {
+        month = month + 1;
+        if (month == 13) {
+          month = 1;
+          year = year + 1;
+          newDate = 15 + "/" + month + "/" + year;
+        } else {
+          newDate = 15 + "/" + month + "/" + year;
+        }
+      }
+      return newDate;
+    }
+
+    function secondDate(tdate) {
+      var day = tdate.getDate();
+      var month = tdate.getMonth() + 1;
+      var year = tdate.getFullYear();
+      var newDate2;
+
+      if (day >= 01 && day <= 06) {
+        newDate2 = 30 + "/" + month + "/" + year;
+      } else if (day >= 07 && day <= 21) {
+        if (month == 2) {
+          newDate2 = 15 + "/" + 3 + "/" + year;
+        } else {
+          month = month + 1;
+          if (month == 13) {
+            month = 1;
+            year = year + 1;
+            newDate2 = 15 + "/" + month + "/" + year;
+          } else {
+            newDate2 = 15 + "/" + month + "/" + year;
+          }
+        }
+      } else if (day >= 22 && day <= 31) {
+        month = month + 1;
+        if (month == 13) {
+          month = 1;
+          year = year + 1;
+          newDate2 = 30 + "/" + month + "/" + year;
+        } else {
+          newDate2 = 30 + "/" + month + "/" + year;
+        }
+      }
+      return newDate2;
+    }
+
+    function thirdDate(tdate) {
+      var day = tdate.getDate();
+      var month = tdate.getMonth() + 1;
+      var year = tdate.getFullYear();
+      var newDate3;
+      if (day >= 01 && day <= 06) {
+        month = month + 1;
+        if (month == 13) {
+          month = 1;
+          year = year + 1;
+          newDate3 = 15 + "/" + month + "/" + year;
+        } else {
+          newDate3 = 15 + "/" + month + "/" + year;
+        }
+      } else if (day >= 07 && day <= 21) {
+        if (month == 2) {
+          newDate3 = 30 + "/" + 3 + "/" + year;
+        } else {
+          month = month + 1;
+          if (month == 13) {
+            month = 1;
+            year = year + 1;
+            newDate3 = 30 + "/" + month + "/" + year;
+          } else if (month == 1) {
+            newDate3 = 28 + "/" + 2 + "/" + year;
+          } else {
+            newDate3 = 30 + "/" + month + "/" + year;
+          }
+          newDate3 = 30 + "/" + month + "/" + year;
+        }
+      } else if (day >= 22 && day <= 31) {
+        month = month + 2;
+        if (month == 13) {
+          month = 1;
+          year = year + 1;
+          newDate3 = 15 + "/" + month + "/" + year;
+        } else {
+          newDate3 = 15 + "/" + month + "/" + year;
+        }
+      }
+      return newDate3;
+    }
+
+    function getRealValuesFromSlice(value) {
+      switch (value) {
+        case "20000":
+          return 20000;
+        case "25000":
+          return 25000;
+        case "30000":
+          return 30000;
+        case "35000":
+          return 35000;
+        case "40000":
+          return 40000;
+        case "45000":
+          return 50000;
+        case "50000":
+          return 75000;
+        case "55000":
+          return 100000;
+      }
+    }
+    function getIntereses(montoSolicitado, plazo) {
+      if (plazo == 15) {
+        switch (montoSolicitado) {
+          case 20000:
+            return 250;
+          case 25000:
+            return 312.5;
+          case 30000:
+            return 375;
+          case 35000:
+            return 437.5;
+          case 40000:
+            return 500;
+          case 50000:
+            return 625;
+          case 75000:
+            return 937.5;
+          case 100000:
+            return 1250;
+        }
+      }
+      if (plazo == 30) {
+        switch (montoSolicitado) {
+          case 20000:
+            return 500;
+          case 25000:
+            return 625;
+          case 30000:
+            return 750;
+          case 35000:
+            return 875;
+          case 40000:
+            return 1000;
+          case 50000:
+            return 1250;
+          case 75000:
+            return 1875;
+          case 100000:
+            return 2500;
+        }
+      }
+      if (plazo == 45) {
+        switch (montoSolicitado) {
+          case 20000:
+            return 750;
+          case 25000:
+            return 937.5;
+          case 30000:
+            return 1125;
+          case 35000:
+            return 1312.5;
+          case 40000:
+            return 1500;
+          case 50000:
+            return 1875;
+          case 75000:
+            return 2812.5;
+          case 100000:
+            return 3750;
+        }
+      }
+    }
+
+    function getAval(montoSolicitado, plazo) {
+      return 0;
+      // if(plazo == 15)
+      // {
+      //     switch (montoSolicitado) {
+      //         case 20000:
+      //             return 1600;
+      //         case 25000:
+      //             return 4500;
+      //         case 30000:
+      //             return 5400;
+      //         case 35000:
+      //             return 7700;
+      //         case 40000:
+      //             return 9200;
+      //         case 50000:
+      //             return 11500;
+      //         case 75000:
+      //             return 18750;
+      //         case 100000:
+      //             return 30000;
+      //     }
+
+      // }
+      // if(plazo == 30)
+      // {
+      //     switch (montoSolicitado)
+      //     {
+      //         case 20000:
+      //             return 1600;
+      //         case 25000:
+      //             return 4500;
+      //         case 30000:
+      //             return 5700;
+      //         case 35000:
+      //             return 7700;
+      //         case 40000:
+      //             return 9200;
+      //         case 50000:
+      //             return 11500;
+      //         case 75000:
+      //             return 18750;
+      //         case 100000:
+      //             return 30000;
+      //     }
+      // }
+      // if(plazo == 45)
+      // {
+      //     switch (montoSolicitado)
+      //     {
+      //         case 20000:
+      //             return 1600;
+      //         case 25000:
+      //             return 4250;
+      //         case 30000:
+      //             return 5700;
+      //         case 35000:
+      //             return 7700;
+      //         case 40000:
+      //             return 9200;
+      //         case 50000:
+      //             return 11500;
+      //         case 75000:
+      //             return 18750;
+      //         case 100000:
+      //             return 30000;
+      //     }
+      // }
+    }
+
+    function getSubTotal(valorSolicitado, interes, tecnologia, iva) {
+      return valorSolicitado + interes + tecnologia + iva;
+    }
+
+    function getTecnologia(montoSolicitado, plazo) {
+      if (plazo == 15) {
+        switch (montoSolicitado) {
+          case 20000:
+            return 7500;
+          case 25000:
+            return 7500;
+          case 30000:
+            return 7500;
+          case 35000:
+            return 7500;
+          case 40000:
+            return 10500;
+          case 50000:
+            return 10500;
+          case 75000:
+            return 13500;
+          case 100000:
+            return 19500;
+        }
+      }
+      if (plazo == 30) {
+        switch (montoSolicitado) {
+          case 20000:
+            return 15000;
+          case 25000:
+            return 15000;
+          case 30000:
+            return 15000;
+          case 35000:
+            return 15000;
+          case 40000:
+            return 21000;
+          case 50000:
+            return 21000;
+          case 75000:
+            return 27000;
+          case 100000:
+            return 39000;
+        }
+      }
+      if (plazo == 45) {
+        switch (montoSolicitado) {
+          case 20000:
+            return 22500;
+          case 25000:
+            return 22500;
+          case 30000:
+            return 22500;
+          case 35000:
+            return 22500;
+          case 40000:
+            return 31500;
+          case 50000:
+            return 31500;
+          case 75000:
+            return 40500;
+          case 100000:
+            return 58500;
+        }
+      }
+    }
+
+    function getIva(tecno) {
+      return tecno * 0.13;
+    }
+
+    function getTotal(subtotal) {
+      return subtotal;
+    }
+    function startProcess() {
+      document.getElementById("loading").style.display = "block";
+    }
+
+    function endProcess() {
+      document.getElementById("loading").style.display = "none";
+    }
+  </script>
+</div>

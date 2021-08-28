@@ -1,0 +1,198 @@
+<div class="container">
+  <div class="block-ce">
+    <div class="col-md-12">
+      <div class="formu" Style="height:auto;">
+        <div class="container">
+          <div class="row">
+            <h5
+              class="blue-text text-darken-4"
+              style="margin: 10px 0 10px 0; font-size: 13px"
+            >
+              RAYO PLUS
+            </h5>
+          </div>
+          <div class="row">
+            <h4 class="blue-text text-darken-4">
+              Préstamos Actuales Rayo plus
+            </h4>
+          </div>
+          <div class="container">
+            <table class="table" *ngFor="let l of data2">
+              <thead>
+                <tr>
+                  <th>Código de préstamo</th>
+                  <th>Monto principal</th>
+                  <th>Tecnología</th>
+                  <th>Interes</th>
+                  <th>Descuento</th>
+                  <th>Total a Pagar</th>
+                  <th>Detalles</th>
+                </tr>
+              </thead>
+
+              <tbody *ngFor="let x of l.prestamos; let i = index">
+                <tr
+                  data-toggle="collapse"
+                  [attr.data-target]="'#demo' + i"
+                  class="accordion-toggle"
+                >
+                  <td style="text-align: center">
+                    {{ x.codigoPrestamo }}
+                  </td>
+
+                  <td style="text-align: center">
+                    {{ x.montoPrestamo }}
+                  </td>
+                  <td style="text-align: center">
+                    {{ x.tecnologia }}
+                  </td>
+                  <!--<td style="text-align: center">
+                                      {{ x.aval }}
+                                    </td>-->
+                  <td>
+                    {{ x.interes }}
+                  </td>
+                  <td>
+                    {{ x.descuento }}
+                  </td>
+                  <td>
+                    {{ x.totalPagar }}
+                  </td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      style="background-color: rgb(241, 179, 44) !important"
+                    >
+                      Detalles
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td colspan="12" class="hiddenRow">
+                    <div class="accordian-body collapse" id="demo{{ i }}">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <!-- encabezado de tabla -->
+                            <td colspan="7">Detalles del prestamo</td>
+                          </tr>
+
+                          <tr class="info">
+                            <th>Fecha Depósito</th>
+                            <th>1era fecha a pagar</th>
+                            <th>2era fecha a pagar</th>
+                            <th>3era fecha a pagar</th>
+                            <th>Plazo</th>
+                            <th>Tipo de Descuento</th>
+                            <th>Detalles pagos</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr
+                            data-toggle="collapse"
+                            class="accordion-toggle"
+                            data-target="#demo10"
+                          >
+                            <td>{{ x.fechaDeposito }}</td>
+                            <td>{{ x.fecha1 }}</td>
+                            <td>{{ x.fecha2 }}</td>
+                            <td>{{ x.fecha3 }}</td>
+                            <td>{{ x.plazo }}</td>
+                            <td>{{ x.tipoDescuento }}</td>
+                            <td>
+                              <button type="button" class="btn btn-primary">
+                                Detalles Pagos
+                              </button>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="12" class="hiddenRow">
+                              <div class="accordian-body collapse" id="demo10">
+                                <table class="table">
+                                  <thead>
+                                    <tr>
+                                      <!-- encabezado de tabla -->
+                                      <td colspan="5">Detalles de los pagos</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Estado</th>
+                                      <th>Fecha de Pago</th>
+                                      <th>Cuota</th>
+                                      <th>Mora</th>
+                                      <th>Monto a Pagar</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor="let p of x.pagos">
+                                      <td>{{ p.estado }}</td>
+                                      <td>{{ p.fechaPago }}</td>
+                                      <td>{{ p.montoPagar }}</td>
+                                      <td>{{ p.mora }}</td>
+                                      <td>{{ p.totalMora }}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <br />
+        <div class="alert alert-danger" [hidden]="ErrorAlCrearLaSolicitud">
+          <strong>Error!</strong>
+          Ocurrio un error al crear la solicitud.
+        </div>
+        <div class="alert alert-success" [hidden]="ProcesandoSolicitudSucces">
+          <strong>Espera!</strong>
+          Estamos procesando tu solicitud y generando la propuesta
+        </div>
+
+        <img
+          src="https://res.cloudinary.com/dhp4vmxxf/image/upload/v1615838781/RayoPlus_f1ppyu.png"
+          alt=""
+          class="img-thumbnail"
+          width="150px"
+          height="150px"
+        />
+
+        <p></p>
+        <br />
+
+        <br />
+        <div>
+          <button
+            class="btn btn-info"
+            (click)="goMiembros()"
+            style="margin-bottom: 10px !important"
+          >
+            Regresar
+          </button>
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <div></div>
+  </div>
+  <br /><br />
+</div>
+
+<div>
+  <br />
+</div>
+
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff">
+  <img
+    src="https://res.cloudinary.com/dhp4vmxxf/image/upload/v1612140669/35771931234507.564a1d2403b3a_pt3lfo.gif"
+  />
+</ngx-spinner>

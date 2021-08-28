@@ -1,0 +1,122 @@
+
+    <div id="frm">
+        <div  class=" wrap_bg">
+            <!-- Begin Default Content REMOVE THIS -->
+            <div class="row">
+                <div class="col l8 offset-l2 m10 offset-m1 s12">
+                    <div class="marquee">
+                        <div id="loginpanel">
+                            <!---->
+                                <form [formGroup]="form" (ngSubmit)="enviarLogin($event)">
+                                    <div class="container">
+                                        <div class="col-lg-12">
+                                            <div class="card bg-gradient-secondary shadow">
+                                                <div class="card-body p-lg-5">
+                                                    <div  align="left">
+                                                        <img src="https://res.cloudinary.com/dhp4vmxxf/image/upload/v1612906923/LogoRayoDocumentos_brxls1.png" width="25%" height="24%" alt="" class="responsive-img " />
+                                                    </div>
+                                                    <!--Nombre y cedula-->
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <p style="text-align:left;">*Correo Electrónico:</p>
+                                                            <input  class="form-control" id="Nombre" formControlName="emailuser" />
+                                                            <div *ngIf="form.get('emailuser')?.errors && form.get('emailuser')?.touched">
+                                                                <p *ngIf="form.get('emailuser')?.hasError('required')" style="color: red; font-weight: bold; text-transform: uppercase;">
+                                                                  Es un campo requerido
+                                                                </p>
+                                                                <p *ngIf="form.get('emailuser')?.hasError('email')" style="color: red; font-weight: bold; text-transform: uppercase;">
+                                                                    El valor ingresado no corresponde a un correo electrónico valido
+                                                                  </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group  col-md-6">
+                                                            <p style="text-align:left;">*Contraseña :</p>
+                                                            <input  class="form-control" id="Cedula" formControlName="passuser" required="true" type="password"/>
+                                                            
+                                                            <div *ngIf="form.get('passuser')?.errors && form.get('passuser')?.touched">
+                                                                <p *ngIf="form.get('passuser')?.hasError('required')" style="color: red; font-weight: bold; text-transform: uppercase;">
+                                                                  Es un campo requerido
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--Fin nombre cedula-->
+                                        
+                                                    <div class="alert alert-danger" [hidden]='ErrorLogin'><strong>Error! </strong>Al parecer los datos ingresados no son validos,<br/>
+                                                            favor valida que la información ingresada sea la correcta.
+                                                    </div>
+                                                    <div class="alert alert-success" [hidden]='ProcesandoLogin'><strong>Espera!</strong>
+                                                        Estamos procesando tu solicitud y generando la propuesta 
+                                                    </div>
+                                                    <!--Botones-->
+                                                    <div class="form-group mb-4">
+                                                     
+                                                        <a [routerLink]="['']" class="btn btn btn-danger" >Cancelar</a>
+                                                        &nbsp;
+                                                        <button type="submit" class="btn btn btn-success" >Ingresar</button>
+                                                        </div>
+                                                    <!--Fin Botones-->
+                                                    <div style="width: 100%; text-align: center;">
+                                                        <p (click)="openRecupeContra(content)" style="color: blue; cursor: pointer;">Olvide mi contraseña</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                  
+                                </form>
+                                <!--Fin Form-->
+                                
+                                
+                                
+                      
+
+                        <!--******************** Olvide Constrasena 
+                        <div id="forgotpasspanel" rendered="{!isForgotPassword}">
+                            <div class="form-group" Style="width:40%; margin-left:30%;">
+                                
+                                <div style="color:green">
+                                    {!isSuccess}
+                                </div>
+                                <input styleClass="form-control" label="UserName" value="{!userNameEmail}"  html-placeholder="Email"/><br/>
+                            </div>
+                            <apex:commandButton value="Enviar correo" styleClass="btn btn-large blue darken-1"  
+                                                action="{!SendEmailPassword}" status="status" reRender="frm"/>
+                            <apex:commandButton value="Volver a Login" styleClass="btn btn-large blue darken-1" 
+                                                action="{!loginPage}" status="status" reRender="frm"/>
+                        </div>
+                        --> 
+                    </div>
+                </div>
+            </div>
+        <!-- End Default Content REMOVE THIS -->
+        </div>
+    <ngx-spinner bdColor="rgba(51,51,51,0.8)"
+    size="medium"
+    color="#fff">
+        <img src='https://res.cloudinary.com/dhp4vmxxf/image/upload/v1612140669/35771931234507.564a1d2403b3a_pt3lfo.gif'/>
+    </ngx-spinner>
+
+    <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Recuperar contrasena</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group" [hidden]="mensajeSalidaRecupe != undefined">
+                <label for="exampleInputEmail1">Ingrese su correo electrónico</label>
+                <input type="email" [(ngModel)]="recuperarEmail.email" class="form-control" id="exampleInputEmail1"  placeholder="Correo ">
+                <small id="emailHelp" class="form-text text-muted">Al dar click en el botón de aceptar 
+                    se enviara un correo electrónico a la dirección especificada anteriormente.</small>
+                <button type="button" class="btn btn-success" (click)="getTokenRecuperarContra()" >Aceptar</button>
+            </div>
+            <div>
+                {{mensajeSalidaRecupe}}
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="refrescarPantalla()" >Salir</button>
+        </div>
+      </ng-template>
